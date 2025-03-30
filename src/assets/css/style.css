@@ -52,7 +52,7 @@ header {
     border: 1px solid #ff0077;
     background-color: #ff0077;
     color: white;
-    padding: 0.05rem 1rem;
+    padding: 0.2rem 1rem;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
 }
 
@@ -62,3 +62,22 @@ header {
     border-color: #ec3169;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
+#app input {
+    font: inherit;
+    padding: 0.15rem;
+  }
+  #app label {
+    font-weight: bold;
+    margin-right: 1rem;
+    width: 8rem;
+    display: inline-block;
+    text-align: right;
+  }
+  #app form div {
+    margin: 1rem 0;
+  }
+  .delete{
+    float: right;
+    margin: 0!important;
+    padding: 0.3rem!important;
+  }

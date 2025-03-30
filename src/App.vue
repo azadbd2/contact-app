@@ -1,7 +1,7 @@
 <template>
   <section>
     <header><h1>Friends Contact</h1></header>
-    <ContactForms></ContactForms>
+    <ContactForms @add-contact="addContact"></ContactForms>
     <FriendsContact
       v-for="friend in friends"
       :key="friend.id"
@@ -11,6 +11,7 @@
       :email-address="friend.emailAddress"
       :is-favorite="friend.isFavorite"
       @click-is-favorite="(id) => toggleFavoriteState(id)"
+      @delete-contact="(id)=>deleteContact(id)"
     ></FriendsContact>
   </section>
 </template>
@@ -21,36 +22,7 @@ export default {
 
   data() {
     return {
-      friends: [
-        {
-          id: "f1",
-          friendName: "John Doe",
-          phoneNumber: "+1234567890",
-          emailAddress: "john.doe@example.com",
-          isFavorite: true,
-        },
-        {
-          id: "f2",
-          friendName: "Jane Smith",
-          phoneNumber: "+1987654321",
-          emailAddress: "jane.smith@example.com",
-          isFavorite: false,
-        },
-        {
-          id: "f3",
-          friendName: "Michael Brown",
-          phoneNumber: "+1122334455",
-          emailAddress: "michael.brown@example.com",
-          isFavorite: true,
-        },
-        {
-          id: "f4",
-          friendName: "Emily Johnson",
-          phoneNumber: "+1567890123",
-          emailAddress: "emily.johnson@example.com",
-          isFavorite: false,
-        },
-      ],
+      friends: [],
     };
   },
   methods: {
@@ -59,6 +31,20 @@ export default {
       if (friend) {
         friend.isFavorite = !friend.isFavorite;
       }
+    },
+    addContact(name,phoneNumber, emailAddress){
+      const newFriendList ={
+        id: new Date().toISOString(),
+        friendName:name,
+        phoneNumber:phoneNumber,
+        emailAddress:emailAddress,
+        isFavorite:false
+      }
+     this.friends.push(newFriendList)
+    },
+    deleteContact(friendId){
+      console.log('fid'+ friendId)
+this.friends=this.friends.filter(friend=>friend.id!==friendId)
     },
   },
 };

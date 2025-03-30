@@ -1,6 +1,7 @@
 <template>
   <ul>
-    <li>{{ friendName }} {{ isFavorite ? "(Favorite)" : "" }}</li>
+    <li>{{ friendName }} {{ isFavorite ? "(Favorite)" : "" }} 
+      <button class="delete" @click="deleteContact">X</button></li>
     <li>
       <button @click="toggleShowDetails()">
         {{ showDetails ? "Hide" : "View Details" }}
@@ -49,6 +50,7 @@ export default {
       showDetails: false,
     };
   },
+  emits:['click-is-favorite','delete-contact'],
   methods: {
     toggleShowDetails() {
       this.showDetails = !this.showDetails;
@@ -56,6 +58,10 @@ export default {
     toggleFavorite() {
       this.$emit("click-is-favorite", this.id);
     },
+    deleteContact(){
+      this.$emit('delete-contact', this.id)
+      console.log(this.id)
+    }
   },
   computed: {
     getFavBtnText() {
